@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Driver - Home";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2 class="display-4 font-weight-bold">Driver Dashboard</h2>
+            <p class="lead text-muted">Welcome to your Driver Dashboard. Manage your profile, services, and subscription.</p>
+        </div>
+    </div>
+
+    <!-- Cards Row -->
+    <div class="row mt-5">
+        <!-- Profile Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-light rounded">
+                <img src="~/images/b742905943d6f8d78c97cf5b526b3bb5.jpg" class="card-img-top" alt="Profile Image">
+                <div class="card-body">
+                    <h5 class="card-title " style="color:#292826;">Your Profile</h5>
+                    <p class="card-text text-muted">Update your personal information and review your profile details.</p>
+                    <a asp-action="Profile" class="btn text-white w-100" style="background-color:#A2A19C;">View Profile</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Company Services Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-light rounded">
+                <img src="~/images/taxi-service1.jpg" class="card-img-top" alt="Company Services">
+                <div class="card-body">
+                    <h5 class="card-title " style="color:#ffc400;">Company Services</h5>
+                    <p class="card-text text-muted">Explore the services provided by the company, including available driving opportunities.</p>
+                    <a asp-action="Services" class="btn w-100" style="background-color:#FFCA18;">Explore Services</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscription Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-light rounded">
+                <img src="~/images/credit cards.webp" class="card-img-top" alt="Subscription Details">
+                <div class="card-body">
+                    <h5 class="card-title " style="color:#5E44C8;">Your Subscription</h5>
+                    <p class="card-text text-muted">Check and manage your current subscription details for service access.</p>
+                    <a asp-action="Subscription" class="btn text-white w-100" style="background-color:#5E44C8;">Manage Subscription</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Add custom CSS for additional styling -->
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-img-top {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .text-muted {
+        font-size: 14px;
+    }
+
+    .text-primary {
+        color: #007bff;
+    }
+</style>

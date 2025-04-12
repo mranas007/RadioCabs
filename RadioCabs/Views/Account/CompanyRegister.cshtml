@@ -1,0 +1,162 @@
+﻿@model RadioCabs.Models.ViewModel.RegisterVM
+@{
+	ViewData["Title"] = "Company Registration";
+}
+
+<div class="container my-5">
+	<div class="row justify-content-center">
+		<div class="col-lg-8 col-md-10">
+			<div class="card shadow-lg border-0 rounded-lg">
+				<div class="card-header bg-primary text-white text-center py-4">
+					<h2 class="fs-3 fw-bold mb-0">Company Registration</h2>
+				</div>
+				<div class="card-body p-4 p-md-5">
+					<p class="text-center text-muted mb-4">Register your company and start advertising today!</p>
+
+					<form asp-action="Register" id="registrationForm" novalidate>
+						<input asp-for="UserType" value="Company" type="hidden" />
+						<input asp-for="Membership" value="Free" type="hidden" />
+
+						<!-- Personal Information Section -->
+						<div class="card mb-4 border-0 bg-light">
+							<div class="card-body">
+								<h4 class="mb-3 text-primary">Personal Information</h4>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="FullName" class="form-label">Full Name <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+											<input asp-for="FullName" class="form-control" placeholder="Enter your full name" required />
+										</div>
+										<span class="text-danger" asp-validation-for="FullName"></span>
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="Email" class="form-label">Email Address <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+											<input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" required />
+										</div>
+										<span class="text-danger" asp-validation-for="Email"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Company Information Section -->
+						<div class="card mb-4 border-0 bg-light">
+							<div class="card-body">
+								<h4 class="mb-3 text-primary">Company Details</h4>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="CompanyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-building"></i></span>
+											<input asp-for="CompanyName" class="form-control" placeholder="Enter company name" required />
+										</div>
+										<span class="text-danger" asp-validation-for="CompanyName"></span>
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="Designation" class="form-label">Your Designation <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-briefcase-fill"></i></span>
+											<input asp-for="Designation" class="form-control" placeholder="Enter your designation" required />
+										</div>
+										<span class="text-danger" asp-validation-for="Designation"></span>
+									</div>
+								</div>
+								<div class="mb-3">
+									<label asp-for="CompanyAddress" class="form-label">Company Address <span class="text-danger">*</span></label>
+									<div class="input-group">
+										<span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+										<textarea asp-for="CompanyAddress" class="form-control" rows="2" placeholder="Enter company address" required></textarea>
+									</div>
+									<span class="text-danger" asp-validation-for="CompanyAddress"></span>
+								</div>
+								<div class="mb-3">
+									<label asp-for="Description" class="form-label">Company Description</label>
+									<div class="input-group">
+										<span class="input-group-text"><i class="bi bi-file-text-fill"></i></span>
+										<textarea asp-for="Description" class="form-control" rows="4" placeholder="Tell us about your company and services offered"></textarea>
+									</div>
+									<span class="text-danger" asp-validation-for="Description"></span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Security Section -->
+						<div class="card mb-4 border-0 bg-light">
+							<div class="card-body">
+								<h4 class="mb-3 text-primary">Security</h4>
+								<div class="row">
+									<div class="col-md-6 mb-3">
+										<label asp-for="Password" class="form-label">Password <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+											<input asp-for="Password" type="password" class="form-control" placeholder="Enter password"
+												   required data-toggle="password-strength" />
+											<button class="btn btn-outline-secondary" type="button" id="togglePassword">
+												<i class="bi bi-eye"></i>
+											</button>
+										</div>
+										<div class="password-strength-meter mt-2"></div>
+										<span class="text-danger" asp-validation-for="Password"></span>
+									</div>
+									<div class="col-md-6 mb-3">
+										<label asp-for="ConfirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+										<div class="input-group">
+											<span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+											<input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm password" required />
+											<button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+												<i class="bi bi-eye"></i>
+											</button>
+										</div>
+										<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary btn-lg">
+								<i class="bi bi-check-circle me-2"></i>Register Company
+							</button>
+							<button type="reset" class="btn btn-outline-secondary">
+								<i class="bi bi-arrow-counterclockwise me-2"></i>Reset Form
+							</button>
+						</div>
+					</form>
+
+					<div class="text-center mt-4">
+						<p>Already have an account? <a href="@Url.Action("Login", "Account")" class="text-primary">LogIn</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// Toggle password visibility
+			document.getElementById('togglePassword').addEventListener('click', function() {
+				const passwordInput = document.getElementById('Password');
+				const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+				passwordInput.setAttribute('type', type);
+				this.querySelector('i').classList.toggle('bi-eye');
+				this.querySelector('i').classList.toggle('bi-eye-slash');
+			});
+
+			document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+				const passwordInput = document.getElementById('ConfirmPassword');
+				const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+				passwordInput.setAttribute('type', type);
+				this.querySelector('i').classList.toggle('bi-eye');
+				this.querySelector('i').classList.toggle('bi-eye-slash');
+			});
+
+		});
+	</script>
+}

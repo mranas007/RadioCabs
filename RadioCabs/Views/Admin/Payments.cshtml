@@ -1,0 +1,84 @@
+﻿@model IEnumerable<RadioCabs.Models.Payment>
+
+@{
+    ViewData["Title"] = "Paid Payments List";
+}
+
+<h1>Paid Payments List</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Amount</th>
+                    <th>Payment Type</th>
+                    <th>Payment Date</th>
+                    <th>Expiry Date</th>
+                    <th>Transaction ID</th>
+                    <th>Card Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var payment in Model)
+                {
+                    <tr>
+                        <td>@payment.Id</td>
+                        <td>@(payment.User?.FullName ?? "Unknown User")</td>
+                        <td>@payment.Amount.ToString("C")</td>
+                        <td>@payment.PaymentType</td>
+                        <td>@payment.PaymentDate.ToString("MMM dd, yyyy")</td>
+                        <td>@payment.ExpiryDate.ToString("MMM dd, yyyy")</td>
+                        <td>@(payment.TransactionId ?? "N/A")</td>
+                        <td>
+                            @(payment.CardNumber != null
+                                ? "**** **** **** " + payment.CardNumber.Substring(payment.CardNumber.Length - 4)
+                                : "N/A")
+                        </td>
+                        <td>
+                            <a href="@Url.Action("PaymentDetails", "Admin", new { id = payment.Id })"
+                               class="btn btn-sm btn-info"><i class="bi bi-info-circle"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                "pageLength": 10,
+                "order": [[4, "desc"]], // Sort by Payment Date descending
+                "columnDefs": [
+                    { "orderable": false, "targets": [8] } // Disable sorting on Actions
+                ]
+            });
+        });
+    </script>
+}
+
+<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .table-striped tbody tr.expired {
+        background-color: #fff3f3;
+    }
+</style>

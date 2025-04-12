@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    var layout = "~/Views/Shared/_Layout.cshtml"; // Default layout
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+        var roles = user != null ? await UserManager.GetRolesAsync(user) : new List<string>();
+
+        if (roles.Contains("Driver"))
+        {
+            layout = "~/Views/Shared/_DriverLayout.cshtml";
+        }
+        else if (roles.Contains("Company"))
+        {
+            layout = "~/Views/Shared/_CompanyLayout.cshtml";
+        }
+        else if (roles.Contains("Admin"))
+        {
+            layout = "~/Views/Shared/_AdminLayout.cshtml";
+        }
+    }
+
+    Layout = layout;
+}

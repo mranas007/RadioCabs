@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Driver Registration";
+}
+
+<div class="container mt-5" style="min-height:100vh;">
+    <h2 class="text-center text-primary">Choose Your Subscription Plan</h2>
+    <p class="text-center text-muted">Select a plan that suits your driving career.</p>
+
+    <div class="row justify-content-center">
+        <!-- Monthly Plan -->
+        <div class="col-md-5">
+            <div class="card border-primary shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="text-primary">Monthly Plan</h4>
+                    <h5 class="text-danger">$29.99 / Month</h5>
+                    <p class="text-muted">Ideal for flexible drivers.</p>
+                    <ul class="list-unstyled">
+                        <li>✔ Access to job postings</li>
+                        <li>✔ 24/7 Customer Support</li>
+                        <li>✔ Profile Listing</li>
+                    </ul>
+                    <a asp-action="Register" asp-route-usertype="Driver" asp-route-membership="Basic" class="btn btn-primary w-100">Register Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quarterly Plan -->
+        <div class="col-md-5">
+            <div class="card border-success shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="text-success">Quarterly Plan</h4>
+                    <h5 class="text-danger">$79.99 / 3 Months</h5>
+                    <p class="text-muted">Best for committed drivers.</p>
+                    <ul class="list-unstyled">
+                        <li>✔ All Monthly Plan Features</li>
+                        <li>✔ Priority Profile Listing</li>
+                        <li>✔ Featured in Driver Spotlight</li>
+                    </ul>
+                    <a asp-action="Register" asp-route-usertype="Driver" asp-route-subscription="Premium" class="btn btn-success w-100">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

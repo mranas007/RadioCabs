@@ -1,0 +1,26 @@
+﻿@model Payment
+
+@{
+    ViewData["Title"] = "Make a Payment";
+}
+
+<h2>Make a Payment</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Amount"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PaymentType"></label>
+        <select asp-for="PaymentType" class="form-control">
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+        </select>
+        <span asp-validation-for="PaymentType" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Pay Now</button>
+</form>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<RadioCabs.Models.Driver>
+
+@{
+	ViewData["Title"] = "Driver List";
+}
+
+<div class="container mt-4">
+	<h2 class="text-primary mb-4">Drivers List</h2>
+
+	<div class="table-responsive">
+		<table class="table table-bordered table-hover shadow-sm ">
+			<thead class="table-dark text-center">
+				<tr>
+					<th>Name</th>
+					<th>Driver Name</th>
+					<th>Experience</th>
+					<th>Contact Person</th>
+					<th>Driver ID</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Description</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var user in Model)
+				{
+					var maxLength = 25;
+					<tr class="align-middle">
+						<td>@user.User.FullName</td>
+						<td>@user.DriverName</td>
+						<td>@user.Experience</td>
+						<td>@user.ContactPerson</td>
+						<td>@user.DriverID</td>
+						<td>@user.User.PhoneNumber</td>
+						<td class="text-break">@user.User.Email</td>
+						<td class="text-break">
+							@(user.Description?.Length > maxLength ? user.Description.Substring(0, maxLength) + "..." : user.Description)
+						</td>
+						<td>
+							<a asp-action="DriverDetails" asp-route-id="@user.Id" class="btn btn-sm btn-info">
+								<i class="bi bi-info-circle"></i>
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+

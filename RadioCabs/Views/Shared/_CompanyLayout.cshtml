@@ -1,0 +1,106 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Company Dashboard</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/RadioCabs.styles.css" asp-append-version="true" />
+	<link rel="icon" href="~/images/favicon.png" type="image/x-icon" />
+
+	<!-- Toastify CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div class="bg-dark border-end" id="sidebar-wrapper">
+			<div class="sidebar-heading text-white text-center py-3">
+				<i class="bi bi-building"></i> Company Panel
+			</div>
+			<div class="list-group list-group-flush">
+				<a href="@Url.Action("Dashboard", "Company")" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="bi bi-speedometer2 me-2"></i> Dashboard
+				</a>
+				<a href="@Url.Action("Profile", "Company")" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="bi bi-person-circle me-2"></i> Profile
+				</a>
+				<a href="@Url.Action("ListAd", "Company")" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="bi bi-megaphone me-2"></i> Manage Ads
+				</a>
+				<a href="@Url.Action("Subscription", "Company")" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="bi bi-credit-card-fill"></i> Subscription Status
+				</a>
+				<a href="@Url.Action("DriverList", "Company")" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="bi bi-taxi-front-fill"></i> Drivers List
+				</a>
+			</div>
+		</div>
+		<!-- /#sidebar-wrapper -->
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+				<button class="btn btn-dark me-2" id="menu-toggle">
+					<i class="bi-box-arrow-left" id="menu-icon"></i> <span>Menu</span>
+				</button>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav ms-auto align-items-center">
+						@if (SignInManager.IsSignedIn(User))
+						{
+							<li class="nav-item me-3">
+								<span class="nav-link">
+									<i class="bi bi-person-circle"></i> Welcome, @UserManager.GetUserName(User)!
+								</span>
+							</li>
+							<li class="nav-item">
+								<form asp-controller="Account" asp-action="Logout">
+									<button class="logout-btn">
+										<i class="bi bi-box-arrow-right"></i> Logout
+									</button>
+								</form>
+							</li>
+						}
+					</ul>
+				</div>
+			</nav>
+
+			<div class="container-fluid p-0">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+	<partial name="_Alert" />
+
+	<!-- Toastify JS -->
+	<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		 let toggleMenu = document.getElementById("menu-toggle");
+		let menuIcon = document.getElementById("menu-icon");
+
+		toggleMenu.addEventListener("click", function () {
+		document.getElementById("wrapper").classList.toggle("toggled");
+			// Toggle icon class
+			if (menuIcon.classList.contains("bi-list")) {
+				menuIcon.classList.replace("bi-list", "bi-box-arrow-left");
+			} else {
+				menuIcon.classList.replace("bi-box-arrow-left", "bi-list");
+			}
+		});
+	</script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

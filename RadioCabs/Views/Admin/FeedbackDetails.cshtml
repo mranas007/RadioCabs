@@ -1,0 +1,71 @@
+﻿@model RadioCabs.Models.Feedback
+
+@{
+    ViewData["Title"] = "Feedback Details";
+}
+
+<h1>Feedback Details</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (Model == null)
+{
+    <div class="alert alert-warning">Feedback not found.</div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h4>Feedback #@Model.Id</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.Email</dd>
+
+                <dt class="col-sm-3">Phone Number</dt>
+                <dd class="col-sm-9">@(Model.PhoneNumber ?? "Not provided")</dd>
+
+                <dt class="col-sm-3">City</dt>
+                <dd class="col-sm-9">@Model.City</dd>
+
+                <dt class="col-sm-3">Type</dt>
+                <dd class="col-sm-9">
+                    <span class="rounded p-1 @(Model.Type switch
+                    {
+                        "Complaint" => "bg-danger",
+                        "Suggestion" => "bg-info",
+                        "Compliment" => "bg-success",
+                        "Other" => "bg-secondary",
+                        _ => "bg-secondary"
+                    })">
+                        @Model.Type
+                    </span>
+                </dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Feedback" class="btn btn-secondary">Back to List</a>
+            <form asp-action="DeleteFeedback" asp-route-id="@Model.Id">
+                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are your Sure wanna delete this User');">
+                   Delete
+                </button>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        // Add any custom JavaScript if needed
+    </script>
+}

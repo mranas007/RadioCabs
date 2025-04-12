@@ -1,0 +1,85 @@
+﻿@model RadioCabs.Models.Advertisement
+@{
+    ViewData["Title"] = "Edit Advertisement";
+    List<string> ValidationErrors = ViewBag.ValidationErrors as List<string>;
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                @if (ValidationErrors != null && ValidationErrors.Any())
+                {
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach (var err in ValidationErrors)
+                            {
+                                <li>@err</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                <div class="card-body">
+                    <h2 class="text-center text-primary">Edit Advertisement</h2>
+                    <p class="text-center text-muted">Update your advertisement details below.</p>
+
+                    <form asp-action="EditAd" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="CompanyId" />
+
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label fw-bold">Advertisement Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="Enter advertisement title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Designation" class="form-label fw-bold">Designation</label>
+                            <input asp-for="Designation" class="form-control" placeholder="Enter your designation" />
+                            <span class="text-danger" asp-validation-for="Designation"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label fw-bold">Address</label>
+                            <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                            <span class="text-danger" asp-validation-for="Address"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Mobile" class="form-label fw-bold">Mobile Number</label>
+                            <input asp-for="Mobile" class="form-control" placeholder="Enter your mobile number" />
+                            <span class="text-danger" asp-validation-for="Mobile"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Telephone" class="form-label fw-bold">Telephone (Optional)</label>
+                            <input asp-for="Telephone" class="form-control" placeholder="Enter telephone number (if any)" />
+                            <span class="text-danger" asp-validation-for="Telephone"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FaxNumber" class="form-label fw-bold">Fax Number (Optional)</label>
+                            <input asp-for="FaxNumber" class="form-control" placeholder="Enter fax number (if any)" />
+                            <span class="text-danger" asp-validation-for="FaxNumber"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Service Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Describe your services"></textarea>
+                            <span class="text-danger" asp-validation-for="Description"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="ListAd" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

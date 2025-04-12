@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@{
+	ViewData["Title"] = "Payment Successful";
+}
+
+<h2>Payment Successful!</h2>
+<p>Thank you for your payment. Your transaction is being processed.</p>
+
+@{
+	var user = await UserManager.GetUserAsync(User);
+	var roles = await UserManager.GetRolesAsync(user);
+	var roleName = roles.FirstOrDefault();
+}
+<a href="@Url.Action("Index", roleName)" class="btn btn-primary">Go to @roleName</a>

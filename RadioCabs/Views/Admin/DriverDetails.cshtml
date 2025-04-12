@@ -1,0 +1,39 @@
+﻿@model RadioCabs.Models.Driver
+
+@{
+    ViewData["Title"] = "Driver Details";
+}
+
+<div class="container mt-5">
+    <h2 class="text-primary mb-4">Driver Details</h2>
+
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <h4 class="card-title text-info">@Model.DriverName</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Full Name</dt>
+                <dd class="col-sm-9">@Model.User.FullName</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.User.Email</dd>
+
+                <dt class="col-sm-3">Phone Number</dt>
+                <dd class="col-sm-9">@Model.User.PhoneNumber</dd>
+
+                <dt class="col-sm-3">Driver ID</dt>
+                <dd class="col-sm-9">@Model.DriverID</dd>
+
+                <dt class="col-sm-3">Experience</dt>
+                <dd class="col-sm-9">@Model.Experience</dd>
+
+                <dt class="col-sm-3">Contact Person</dt>
+                <dd class="col-sm-9">@Model.ContactPerson</dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
+            <button class="btn btn-secondary mt-3" onclick="history.back()"><i class="bi bi-arrow-left"></i> Go Back</button>
+        </div>
+    </div>
+</div>

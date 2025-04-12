@@ -1,0 +1,12 @@
+﻿@{
+	ViewData["Title"] = "Error";
+}
+
+@if (TempData["Error"] != null)
+{
+	<div style="min-height:90vh">
+		<div class="alert alert-danger" role="alert">
+			@TempData["Error"]
+		</div>
+	</div>
+}

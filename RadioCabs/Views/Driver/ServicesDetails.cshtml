@@ -1,0 +1,44 @@
+﻿@model RadioCabs.Models.Advertisement
+
+@{
+    ViewData["Title"] = "Service Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-lg">
+        <!-- Header -->
+        <div class="card-header bg-primary bg-gradient  text-white text-center py-4" style="background: linear-gradient(45deg, #007bff, #6610f2);">
+            <h3 class="mb-0">@Model.Title</h3>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body bg-light p-4">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Company Name:</strong> @Model.Company.CompanyName</li>
+                <li class="list-group-item"><strong>Designation:</strong> @Model.Designation</li>
+                <li class="list-group-item"><strong>Address:</strong> @Model.Address</li>
+                <li class="list-group-item"><strong>Description:</strong> @Model.Description</li>
+                <li class="list-group-item"><strong>Email:</strong> @Model.Company.User.Email</li>
+                <li class="list-group-item">
+                    <strong>Contact:</strong>
+                    <a href="tel:@Model.Mobile" class="text-primary">@Model.Mobile</a>
+                </li>
+                @if (!string.IsNullOrEmpty(Model.Telephone))
+                {
+                    <li class="list-group-item"><strong>Telephone:</strong> @Model.Telephone</li>
+                }
+                @if (!string.IsNullOrEmpty(Model.FaxNumber))
+                {
+                    <li class="list-group-item"><strong>Fax:</strong> @Model.FaxNumber</li>
+                }
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="card-footer d-flex justify-content-between bg-white p-3">
+            <a asp-action="Services" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Services
+            </a>
+        </div>
+    </div>
+</div>

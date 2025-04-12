@@ -1,0 +1,51 @@
+﻿@model RadioCabs.Models.ViewModel.PaymentVM
+@{
+    ViewData["Title"] = "Subscribe to a Plan";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Choose Your Subscription Plan</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <form asp-action="Subscribe" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Select Payment Type</label>
+                            <select asp-for="PaymentType" class="form-control">
+                                <option value="Monthly">Basic - $9.99 / Month</option>
+                                <option value="Quarterly">Premium - $19.99 / Quarterly</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="PaymentType"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Amount" class="form-label fw-bold">Amount</label>
+                            <input asp-for="Amount" class="form-control" readonly />
+                            <span class="text-danger" asp-validation-for="Amount"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="CardNumber" class="form-label fw-bold">Amount</label>
+                            <input asp-for="CardNumber" class="form-control" placeholder="Enter a card number in format: 1234 5678 9012 3456" required/>
+                            <span class="text-danger" asp-validation-for="CardNumber"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Proceed to Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelector('select[name="PaymentType"]').addEventListener('change', function () {
+            var amount = this.value === "Monthly" ? 9.99 : 19.99;
+            document.querySelector('input[name="Amount"]').value = amount;
+        });
+
+        document.querySelector('select[name="PaymentType"]').dispatchEvent(new Event('change'));
+    </script>
+}

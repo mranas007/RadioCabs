@@ -1,0 +1,54 @@
+﻿@model IEnumerable<RadioCabs.Models.Company>
+
+@{
+    ViewData["Title"] = "Company List";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary mb-4">Company List</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Company ID</th>
+                    <th>Designation</th>
+                    <th>Address</th>
+                    <th>Membership</th>
+                    <th>Description</th>
+                    <th>Owner</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var company in Model)
+                {
+                    var maxLength = 30;
+                    <tr class="align-middle">
+                        <td>@company.CompanyName</td>
+                        <td>@company.CompanyID</td>
+                        <td>@company.Designation</td>
+                        <td class="text-break">
+                            @(company.Address?.Length > maxLength ? company.Address.Substring(0, maxLength) + "..." : company.Address)
+                        </td>
+                        <td>@company.Membership</td>
+                        <td class="text-break">
+                            @(company.Description?.Length > maxLength ? company.Description.Substring(0, maxLength) + "..." : company.Description)
+                        </td>
+                        <td>@company.User.FullName</td>
+                        <td class="text-break">@company.User.Email</td>
+                        <td>@company.User.PhoneNumber</td>
+                        <td class="text-center">
+                            <a asp-action="CompanyDetails" asp-route-id="@company.Id" class="btn btn-sm btn-info">
+                                <i class="bi bi-info-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

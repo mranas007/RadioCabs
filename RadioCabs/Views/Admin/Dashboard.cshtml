@@ -1,0 +1,143 @@
+﻿@model RadioCabs.Models.ViewModel.AdminDashboardVM
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid px-4 py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">Admin Dashboard</h2>
+        <span class="badge bg-primary rounded-pill p-2">Welcome, Admin</span>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="row g-4 mb-5">
+        <!-- Users Card -->
+        <div class="col-md-4">
+            <div class="card border-0 rounded-3 shadow-sm hover-shadow transition-all h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="text-secondary mb-1">Total Users</h5>
+                            <h2 class="fw-bold mb-0">@Model.TotalUsers</h2>
+                        </div>
+                        <div class="icon-bg rounded-circle bg-light p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-people fs-2 text-primary"></i>
+                        </div>
+                    </div>
+                    <a asp-action="UserList" asp-controller="Admin" class="btn btn-sm btn-outline-primary mt-3 d-flex align-items-center">
+                        <span>Manage Users</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drivers Card -->
+        <div class="col-md-4">
+            <div class="card border-0 rounded-3 shadow-sm hover-shadow transition-all h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="text-secondary mb-1">Total Drivers</h5>
+                            <h2 class="fw-bold mb-0">@Model.TotalDrivers</h2>
+                        </div>
+                        <div class="icon-bg rounded-circle bg-light p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-car-front fs-2 text-info"></i>
+                        </div>
+                    </div>
+                    <a asp-action="DriverList" asp-controller="Admin" class="btn btn-sm btn-outline-info mt-3 d-flex align-items-center">
+                        <span>Manage Drivers</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Companies Card -->
+        <div class="col-md-4">
+            <div class="card border-0 rounded-3 shadow-sm hover-shadow transition-all h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="text-secondary mb-1">Total Companies</h5>
+                            <h2 class="fw-bold mb-0">@Model.TotalCompanies</h2>
+                        </div>
+                        <div class="icon-bg rounded-circle bg-light p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-buildings fs-2 text-success"></i>
+                        </div>
+                    </div>
+                    <a asp-action="CompanyList" asp-controller="Admin" class="btn btn-sm btn-outline-success mt-3 d-flex align-items-center">
+                        <span>Manage Companies</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Stats Row -->
+    <div class="row g-4">
+        <!-- Payments Card -->
+        <div class="col-md-6">
+            <div class="card border-0 rounded-3 shadow-sm hover-shadow transition-all h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="text-secondary mb-1">Total Payments</h5>
+                            <h2 class="fw-bold mb-0">@Model.PaidPayments</h2>
+                        </div>
+                        <div class="icon-bg rounded-circle bg-light p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-cash-coin fs-2 text-warning"></i>
+                        </div>
+                    </div>
+                    <a asp-action="Payments" asp-controller="Admin" class="btn btn-sm btn-outline-warning mt-3 d-flex align-items-center">
+                        <span>View Payments</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Card -->
+        <div class="col-md-6">
+            <div class="card border-0 rounded-3 shadow-sm hover-shadow transition-all h-100">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5 class="text-secondary mb-1">User Feedback</h5>
+                            <h2 class="fw-bold mb-0">@Model.TotalFeedbacks</h2>
+                        </div>
+                        <div class="icon-bg rounded-circle bg-light p-3 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-chat-dots fs-2 text-danger"></i>
+                        </div>
+                    </div>
+                    <a asp-action="Feedback" asp-controller="Admin" class="btn btn-sm btn-outline-danger mt-3 d-flex align-items-center">
+                        <span>View Feedback</span>
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS (Add to your site.css or a separate stylesheet) -->
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+
+    .icon-bg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .progress {
+        background-color: rgba(0,0,0,0.05);
+    }
+</style>

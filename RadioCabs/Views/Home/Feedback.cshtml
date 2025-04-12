@@ -1,0 +1,69 @@
+﻿@model RadioCabs.Models.Feedback
+@{
+    ViewData["Title"] = "Feedback";
+}
+
+
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="text-center text-primary">Feedback</h2>
+                    <p class="text-center text-muted">We appreciate your feedback!</p>
+
+                    <form asp-action="Feedback" method="post" novalidate>
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold">Full Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your name" />
+                            <span class="text-danger small" asp-validation-for="Name"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-bold">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" />
+                            <span class="text-danger small" asp-validation-for="PhoneNumber"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-bold">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
+                            <span class="text-danger small" asp-validation-for="Email"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="City" class="form-label fw-bold">City</label>
+                            <input asp-for="City" class="form-control" placeholder="Enter your city" />
+                            <span class="text-danger small" asp-validation-for="City"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Type" class="form-label fw-bold">Feedback Type</label>
+                            <select asp-for="Type" class="form-select">
+                                <option value="" disabled selected>-- Select Type --</option>
+                                <option value="Complaint">Complaint</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Compliment">Compliment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span class="text-danger small" asp-validation-for="Type"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Your Feedback</label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Write your feedback here..."></textarea>
+                            <span class="text-danger small" asp-validation-for="Description"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

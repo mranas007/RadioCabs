@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RadioCabs.Models.Feedback>
+
+@{
+    ViewData["Title"] = "Feedback Management";
+}
+
+<h1>Feedback Management</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var feedback in Model)
+                {
+                    // Define max length for description preview
+                    int maxLength = 10;
+                    string shortDescription = feedback.Description.Length > maxLength
+                    ? feedback.Description.Substring(0, maxLength) + "..."
+                    : feedback.Description;
+
+                    <tr>
+                        <td>@feedback.Id</td>
+                        <td>@feedback.Name</td>
+                        <td>@feedback.Email</td>
+                        <td>@feedback.PhoneNumber</td>
+                        <td>@feedback.City</td>
+                        <td>@feedback.Type</td>
+                        <td>
+                            <span class="description-preview">@shortDescription</span>
+                        </td>
+                        <td class="d-flex gap-1">
+                            <a href="@Url.Action("FeedbackDetails", "Admin", new { id = feedback.Id })"
+                               class="btn btn-sm btn-info">	<i class="bi bi-info-circle"></i></a>
+                            <form asp-action="DeleteFeedback" asp-route-id="@feedback.Id">
+                                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are your Sure wanna delete this User');">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable({
+                "pageLength": 10,
+                "order": [[0, "desc"]], // Sort by ID descending
+                "columnDefs": [
+                    { "orderable": false, "targets": [6, 7] } // Disable sorting on Description and Actions
+                ]
+            });
+        });
+    </script>
+}

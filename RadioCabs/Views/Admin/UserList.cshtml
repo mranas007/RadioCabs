@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RadioCabs.Models.User>
+
+@{
+	ViewData["Title"] = "Users Management";
+}
+
+<h1>Users Management</h1>
+
+<div class="container row mx-auto">
+	<div class="col-md-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Full Name</th>
+					<th>Email</th>
+					<th>User Type</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var user in Model)
+				{
+					<tr>
+						<td>@user.FullName</td>
+						<td>@user.Email</td>
+						<td>@user.UserType</td>
+						<td class="d-flex gap-1">
+							<a asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-sm btn-info">
+								<i class="bi bi-info-circle"></i>
+							</a>
+							<form asp-action="DeleteUser" asp-route-id="@user.Id">
+								<button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are your Sure wanna delete this User');">
+									<i class="bi bi-trash"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		// Add any JavaScript you might need
+		$(document).ready(function() {
+			$('.table').DataTable(); // If you want to use DataTables for better table functionality
+		});
+	</script>
+}

@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@{
+	ViewData["Title"] = "Company - Home";
+}
+
+<div class="container mt-5" style="min-height:90vh">
+
+	<div class="content">
+		<div class="container mt-4">
+			<h2>Welcome to Company Dashboard</h2>
+			<div class="row mt-4">
+				<div class="col-md-4">
+					<div class="card bg-primary text-white p-3">
+						<h5>Total Advertisements</h5>
+						<p>You posted @Model.AdvertisementCount Ad</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card bg-success text-white p-3">
+						<h5>Membership Plan</h5>
+						<p>@Model.MembershipPlan</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card bg-warning text-dark p-3">
+						<h5>Next Payment</h5>
+						<p>@(Model.NextPaymentDate?.ToString("dd MMM yyyy") ?? "Not Available")</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

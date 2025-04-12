@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RadioCabs.Models.Driver>
+
+@{
+    ViewData["Title"] = "Driver Listings";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary"><i class="bi bi-people"></i> Drivers</h2>
+        <input type="text" id="searchBox" class="form-control w-25" placeholder="🔍 Search Driver..." onkeyup="filterDrivers()">
+    </div>
+
+    <div class="row" id="driverList">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var driver in Model)
+            {
+                <div class="col-lg-4 col-md-6 mb-4 driver-card">
+                    <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                        <div class="card-header bg-primary bg-gradient text-white text-center py-3" style="background: linear-gradient(45deg, #007bff, #6610f2);">
+                            <h5 class="card-title mb-0"><i class="bi bi-person-circle"></i> @driver.DriverName</h5>
+                        </div>
+                        <div class="card-body bg-light">
+                            <p class="card-text"><strong><i class="bi bi-phone"></i> Contact:</strong> @driver.ContactPerson</p>
+                            <p class="card-text"><strong><i class="bi bi-geo-alt"></i> City:</strong> @driver.City</p>
+                            <p class="card-text"><strong><i class="bi bi-card-text"></i> Description:</strong> @driver.Description</p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center bg-white">
+                            <a asp-action="DriverDetails" asp-route-id="@driver.Id" class="btn btn-outline-primary btn-sm px-4">
+                                <i class="bi bi-eye"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center">
+                <p class="text-muted">No drivers found.</p>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function filterDrivers() {
+            var input, filter, cards, cardContainer, h5, i, txtValue;
+            input = document.getElementById("searchBox");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("driverList");
+            cards = cardContainer.getElementsByClassName("driver-card");
+
+            for (i = 0; i < cards.length; i++) {
+                h5 = cards[i].getElementsByClassName("card-title")[0];
+                txtValue = h5.textContent || h5.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+}

@@ -1,0 +1,153 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+/* login */
+.navbar .btn-outline-light:hover {
+    background-color: #f8f9fa; /* Light gray instead of white */
+    color: #000 !important; /* Text stays visible */
+    border-color: #f8f9fa;
+}
+
+
+/********************************************** Company Layout **********************************************/
+
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar-wrapper {
+    width: 250px;
+    min-height: 100vh;
+    background-color: #343a40;
+    transition: all 0.3s ease;
+}
+
+    #sidebar-wrapper .list-group-item {
+        border: none;
+        transition: background 0.3s;
+    }
+
+        #sidebar-wrapper .list-group-item:hover {
+            background: #495057;
+        }
+
+#page-content-wrapper {
+    flex-grow: 1;
+}
+
+    #page-content-wrapper .navbar {
+        padding: 10px 20px;
+    }
+
+.toggled #sidebar-wrapper {
+    margin-left: -250px;
+}
+
+#page-content-wrapper .logout-btn {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    #page-content-wrapper .logout-btn:hover {
+        color: #a71d2a;
+    }
+
+
+
+/********************************************** Left $ Right Slider **********************************************/
+
+.animate-slide-left {
+    animation: slideLeft 1s ease-out forwards;
+}
+
+.animate-slide-right {
+    animation: slideRight 1s ease-out forwards;
+}
+
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/********************************************** Footer **********************************************/
+
+.footer {
+    position: relative;
+}
+
+.footer-links a:hover {
+    color: #ffc107 !important;
+    padding-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+    .social-link:hover {
+        background-color: #ffc107;
+        color: #212529;
+        transform: translateY(-3px);
+    }
+
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767.98px) {
+    .footer-links {
+        margin-bottom: 30px;
+    }
+}
